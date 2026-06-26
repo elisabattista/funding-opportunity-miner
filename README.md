@@ -8,20 +8,15 @@ An end-to-end Python pipeline for discovering, extracting and prioritizing schol
 
 This project started from a problem I personally faced.
 
-After being admitted to highly competitive Master's programmes in Financial Mathematics, I began looking for scholarships and funding opportunities to support my studies.
+While searching for scholarships and funding opportunities for postgraduate study in the UK, I quickly realized that finding relevant funding was far more difficult than I had expected.
 
-I quickly realized that finding relevant funding was far more difficult than I had expected.
+Scholarships were scattered across hundreds of university websites, government portals, foundations, international organizations and private institutions. Search results were filled with duplicate pages, outdated information and low-quality directories. Even after hours of searching, it was difficult to know whether I had actually found all the opportunities that matched my profile.
 
-Scholarships were scattered across hundreds of university websites, government portals, foundations, international organizations and private institutions. Search results were filled with duplicate pages, outdated information and low-quality directories. Even after hours of searching, it was impossible to know whether I had actually found all the opportunities that matched my profile.
-
-At that point I stopped thinking about scholarships as a search problem and started thinking about them as a data problem.
-
+At that point, I stopped thinking about scholarships as a search problem and started thinking about them as a data problem.
 Instead of continuing to browse manually, I decided to build a system capable of discovering funding opportunities automatically, extracting the most important information from each webpage and ranking the results according to their potential relevance.
-
 That idea eventually became this project.
 
-Although the original motivation was personal, the pipeline is completely general and can be adapted to discover grants, fellowships, competitions, research funding and many other opportunities where information is distributed across numerous websites.
-
+Although the original motivation was personal, the pipeline is designed to be general and can be adapted to discover grants, fellowships, competitions, research funding and many other opportunities where information is distributed across numerous websites.
 ---
 
 # Project Overview
