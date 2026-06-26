@@ -1,0 +1,10 @@
+pandas
+numpy
+requests
+beautifulsoup4
+trafilatura
+dateparser
+ddgs
+openpyxl
+tqdm
+lxml
