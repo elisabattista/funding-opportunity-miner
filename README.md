@@ -4,25 +4,33 @@ An end-to-end Python pipeline for discovering, extracting and prioritizing schol
 
 ---
 
-# Project Overview
+# Why I Built This Project
 
-Finding scholarships, grants, fellowships and funding opportunities is often a frustrating and highly manual process.
+This project started from a problem I personally faced.
 
-Relevant opportunities are scattered across university websites, government portals, foundations, international organizations and third-party directories. Search engines frequently return duplicate pages, outdated information and low-quality aggregators, making systematic discovery difficult.
+After being admitted to highly competitive Master's programmes in Financial Mathematics, I began looking for scholarships and funding opportunities to support my studies.
 
-This project implements an end-to-end Python pipeline that automates the entire discovery process.
+I quickly realized that finding relevant funding was far more difficult than I had expected.
 
-Rather than relying on a predefined list of scholarships, the pipeline searches the web, identifies potentially relevant funding opportunities, extracts structured information from each page and finally prioritizes the most promising opportunities.
+Scholarships were scattered across hundreds of university websites, government portals, foundations, international organizations and private institutions. Search results were filled with duplicate pages, outdated information and low-quality directories. Even after hours of searching, it was impossible to know whether I had actually found all the opportunities that matched my profile.
 
-The final result is a ranked, actionable shortlist of funding opportunities that can be reviewed and acted upon efficiently.
+At that point I stopped thinking about scholarships as a search problem and started thinking about them as a data problem.
+
+Instead of continuing to browse manually, I decided to build a system capable of discovering funding opportunities automatically, extracting the most important information from each webpage and ranking the results according to their potential relevance.
+
+That idea eventually became this project.
+
+Although the original motivation was personal, the pipeline is completely general and can be adapted to discover grants, fellowships, competitions, research funding and many other opportunities where information is distributed across numerous websites.
 
 ---
 
-# Why this project?
+# Project Overview
 
-Traditional scholarship searches require manually browsing hundreds of university websites, government portals and private foundations.
+Funding Opportunity Miner is an automated three-stage pipeline that transforms raw web search results into a structured and prioritized shortlist of funding opportunities.
 
-The objective of this project is to demonstrate how web search, information extraction and rule-based ranking can be combined into a reproducible pipeline that significantly reduces the time required to identify relevant funding opportunities.
+Rather than relying on a predefined database of scholarships, the project continuously searches the web, evaluates search results, extracts structured information from each webpage and finally ranks opportunities according to multiple decision criteria.
+
+The pipeline combines information retrieval, web scraping, rule-based information extraction and automated scoring into a fully reproducible workflow.
 
 ---
 
@@ -32,19 +40,19 @@ The project is organized into three independent notebooks.
 
 ## Notebook 1 — Funding Discovery
 
-The first stage performs large-scale web discovery.
+The first notebook focuses on discovering potentially relevant opportunities.
 
 It automatically:
 
 - generates hundreds of search queries;
-- searches the web using DuckDuckGo Search;
+- performs large-scale web searches using DuckDuckGo Search;
 - removes duplicate URLs;
 - scores every search result according to relevance;
-- identifies official scholarship pages;
-- penalizes low-quality aggregators and irrelevant pages;
-- exports the highest-quality candidates for further analysis.
+- penalizes low-quality aggregators;
+- identifies official funding pages;
+- selects the best candidates for further analysis.
 
-**Output**
+Output:
 
 ```
 funding_candidates_for_extraction.csv
@@ -54,9 +62,9 @@ funding_candidates_for_extraction.csv
 
 ## Notebook 2 — Information Extraction
 
-The second stage visits every candidate page discovered in Notebook 1.
+The second notebook visits every candidate page discovered in Notebook 1.
 
-For each page it automatically extracts:
+For each webpage it automatically extracts:
 
 - scholarship amounts;
 - tuition coverage;
@@ -66,7 +74,7 @@ For each page it automatically extracts:
 - application links;
 - page quality indicators.
 
-The notebook combines:
+The extraction pipeline combines several complementary techniques including:
 
 - Requests
 - BeautifulSoup
@@ -74,9 +82,9 @@ The notebook combines:
 - Regular Expressions
 - Dateparser
 
-to maximize extraction quality while remaining lightweight and fully automated.
+to maximize robustness across very different website structures.
 
-**Output**
+Output:
 
 ```
 funding_extracted_opportunities.csv
@@ -86,18 +94,18 @@ funding_extracted_opportunities.csv
 
 ## Notebook 3 — Opportunity Prioritization
 
-The final stage converts the extracted information into an actionable ranking.
+The final notebook converts the extracted information into an actionable ranking.
 
-Each opportunity receives a score based on multiple factors including:
+Each opportunity receives a score based on factors such as:
 
 - funding amount;
 - application deadline;
-- page quality;
+- completeness of extracted information;
+- quality of the webpage;
 - eligibility information;
-- availability of application links;
-- official vs third-party source;
-- potential restrictions;
-- completeness of the extracted information.
+- presence of application links;
+- official versus third-party source;
+- potential restrictions.
 
 Finally, every opportunity is automatically classified into one of five categories:
 
@@ -107,7 +115,7 @@ Finally, every opportunity is automatically classified into one of five categori
 - Low Priority
 - Ignore
 
-**Output**
+Output:
 
 ```
 funding_actionable_shortlist.csv
@@ -146,15 +154,15 @@ funding_actionable_shortlist.csv
 
 # Features
 
-- Automated scholarship discovery
-- Web search query generation
+- Automated web discovery of funding opportunities
+- Large-scale search query generation
 - Duplicate URL removal
 - Rule-based relevance scoring
 - Structured information extraction
-- Funding amount extraction
-- Deadline detection
+- Scholarship amount detection
+- Deadline extraction
 - Eligibility extraction
-- Application link extraction
+- Application link detection
 - Opportunity prioritization
 - CSV and Excel export
 - Modular pipeline architecture
@@ -197,14 +205,14 @@ funding_actionable_shortlist.csv
 
 The pipeline automatically produces:
 
-- ranked scholarship opportunities;
-- extracted funding amounts;
-- parsed application deadlines;
+- ranked funding opportunities;
+- extracted scholarship amounts;
+- parsed deadlines;
 - eligibility summaries;
 - application links;
-- a prioritized shortlist of opportunities.
+- a prioritized shortlist of opportunities ready for manual review.
 
-These outputs significantly reduce the amount of manual work required to identify funding opportunities worth pursuing.
+Instead of manually browsing hundreds of websites, users can focus only on the opportunities that are most relevant to their profile.
 
 ---
 
@@ -215,14 +223,16 @@ Possible extensions include:
 - semantic ranking using sentence embeddings;
 - LLM-assisted eligibility analysis;
 - automatic duplicate detection across funding providers;
-- automatic monitoring of newly published opportunities;
-- email notifications for new scholarships;
+- scheduled monitoring for newly published opportunities;
+- automatic email notifications;
 - interactive Streamlit dashboard.
 
 ---
 
 # Disclaimer
 
-This project is intended as a research and automation tool.
+This project was developed as a personal automation project and research exercise.
 
-Scholarships, grants, deadlines and eligibility requirements may change over time. Users should always verify the information directly on the official funding provider's website before submitting an application.
+Although the extraction pipeline is designed to collect structured information automatically, scholarship requirements, deadlines and funding details may change over time.
+
+Users should always verify the information directly on the official funding provider's website before submitting an application.
